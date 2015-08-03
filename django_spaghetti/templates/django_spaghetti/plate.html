@@ -1,0 +1,34 @@
+<script src="//cdnjs.cloudflare.com/ajax/libs/vis/4.7.0/vis.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.7.0/vis.min.css" rel="stylesheet" type="text/css" />
+
+<div id="visualization"></div>
+
+<script>
+  var nodes = new vis.DataSet(
+      {{ nodes|safe }}
+  );
+
+  var edges = new vis.DataSet(
+      {{ edges|safe }}
+  );
+
+  var data = {
+    nodes: nodes,
+    edges: edges
+  };
+
+  var container = document.getElementById('visualization');
+  var options = {
+      physics: {
+        barnesHut: {
+          springLength: 500,
+          avoidOverlap: 1
+
+        }
+      }
+
+  };
+
+  var timeline = new vis.Network(container, data, options);
+
+</script>
