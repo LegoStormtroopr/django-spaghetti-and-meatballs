@@ -1,1 +1,0 @@
-# django-spaghetti-and-meatballs
