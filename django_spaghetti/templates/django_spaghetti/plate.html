@@ -1,15 +1,16 @@
+{% block extra_scripts %}
 <script src="//cdnjs.cloudflare.com/ajax/libs/vis/4.7.0/vis.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.7.0/vis.min.css" rel="stylesheet" type="text/css" />
-
+{% endblock %}
 <div id="visualization"></div>
 
 <script>
   var nodes = new vis.DataSet(
-      {{ nodes|safe }}
+      {{ meatballs|safe }}
   );
 
   var edges = new vis.DataSet(
-      {{ edges|safe }}
+      {{ spaghetti|safe }}
   );
 
   var data = {
@@ -19,13 +20,17 @@
 
   var container = document.getElementById('visualization');
   var options = {
-      physics: {
-        barnesHut: {
-          springLength: 500,
-          avoidOverlap: 1
-
-        }
-      }
+  "edges": {
+    "smooth": {
+      "type": "cubicBezier",
+      "roundness": 0.55
+    }
+  },
+  "physics": {
+    "hierarchicalRepulsion": {
+    },
+    "solver": "hierarchicalRepulsion"
+  }
 
   };
 

@@ -1,0 +1,17 @@
+<div style="max-width:250px;white-space: normal;">
+<header style="border-bottom:1px solid black">
+    Model: {{ model.model }}<br>
+    App: {{ model.app_label }}
+</header>
+<div style="padding:3px;">
+    {{ model.doc }}
+</div>
+{% if fields %}
+    <b>Fields:</b>
+    <ul>
+        {% for field in fields %}
+        <li>{% if field.unique %}<u>{{field.name}}</u>{%else%}{{field.name}}{%endif%} <small>{{field.ftype}}</small> <br><small>{{field.help_text}}</small></li>
+        {% endfor %}
+    </ul>
+{% endif %}
+</div>
