@@ -8,17 +8,19 @@ from django.template import Context
 
 import json
 
-graph_settings = getattr(settings, 'GRAPH_MODELS', {})
+graph_settings = getattr(settings, 'SPAGHETTI_SAUCE', {})
 apps = graph_settings.get('apps',[])
 
 def plate(request):
-
+    excludes = ['%s__%s'%(app,model) for app,models in graph_settings.get('exclude',{}).items() for model in models ]
     models = ContentType.objects.filter(app_label__in=apps)
     nodes = []
     edges = []
     for model in models:
         model.doc  = model.model_class().__doc__
         _id = "%s__%s"%(model.app_label,model.model)
+        if _id in excludes:
+            continue
         label = "%s"%(model.model)
         fields = [f for f in model.model_class()._meta.fields if not str(f.name).endswith('_ptr')]
         many = [f for f in model.model_class()._meta.many_to_many]
