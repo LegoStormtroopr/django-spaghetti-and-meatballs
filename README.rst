@@ -55,4 +55,9 @@ This was build with the sauce::
     'apps':['auth','notifications','reversion],
     'show_fields':False,
     }
+
+A complex live-demo
+-------------------
+
+To see a complex example, where ``django-spaghetti-and-meatballs`` really shines, checkout the live version built for the Aristotle Meatadata Registry: http://aristotle.pythonanywhere.com/plate/
     
