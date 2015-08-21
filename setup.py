@@ -9,7 +9,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='django-spaghetti-and-meatballs',
-    version='0.1',
+    version='0.1.0rc1',
     packages=['django_spaghetti'],
     include_package_data=True,
     license='MIT License',
@@ -22,7 +22,7 @@ setup(
         'Environment :: Web Environment',
         'Framework :: Django',
         'Intended Audience :: Developers',
-        'License :: OSI Approved :: MIT License', # example license
+        'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
         # Replace these appropriately if you are stuck on Python 2.
@@ -32,4 +32,7 @@ setup(
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
     ],
+    keywords='django entity relationship diagram erd uml',
+    install_requires=['django'], # I mean obviously you'll have django installed if you want to use this.
+
 )
