@@ -1,5 +1,6 @@
 import os
 from setuptools import setup
+from django_spaghetti import __version__
 
 with open(os.path.join(os.path.dirname(__file__), 'README.rst')) as readme:
     README = readme.read()
@@ -9,12 +10,12 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='django-spaghetti-and-meatballs',
-    version='0.1.0rc1',
+    version=__version__,
     packages=['django_spaghetti'],
     include_package_data=True,
     license='MIT License',
     description='Its a spicy meatball for serving up fresh hot entity-relationship diagrams straight from your django models.',
-    long_description=README.rst,
+    long_description=README,
     url='https://github.com/LegoStormtroopr/django-spaghetti-and-meatballs/',
     author='Samuel Spencer',
     author_email='sam@sqbl.org',
