@@ -12,6 +12,14 @@ Configure your sauce
 ++++++++++++++++++++
 ``django-spaghetti-and-meatballs`` takes a view options set in the ``SPAGHETTI_SAUCE`` variable from your projects ``settings.py`` file that make it `extra spicy`::
 
+  Add "django_spaghetti" to your INSTALLED_APPS setting like this::
+
+    INSTALLED_APPS = [
+        ...
+        'django_spaghetti',
+    ]
+
+
   SPAGHETTI_SAUCE = {
     'apps':['auth','polls'],
     'show_fields':False,
