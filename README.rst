@@ -33,7 +33,7 @@ variable from your projects ``settings.py`` file that make it `extra spicy`::
     'exclude':{'auth':['user']}
   }
 
-In the above dictionary, the settings mean:
+In the above dictionary, the following settings are used:
 
 * ``apps`` is a list of apps you want to show in the graph. If its `not` in here it `won't be seen`.
 * ``show_fields`` is a boolean that states if the field names should be shown in the graph or just in the however over. For small graphs, you can set this to `True` to show fields as well, but as you get more models it gets messier.
