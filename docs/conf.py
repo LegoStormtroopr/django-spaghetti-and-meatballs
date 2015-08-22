@@ -58,6 +58,11 @@ author = u'Samuel Spencer'
 # |version| and |release|, also used in various other places throughout the
 # built documents.
 #
+
+BASE = os.path.dirname(os.path.dirname(__file__))
+sys.path.insert(1,BASE)
+sys.path.insert(1,os.path.join(BASE, "../django_spaghetti"))
+
 from django_spaghetti import __version__
 
 # The short X.Y version.
