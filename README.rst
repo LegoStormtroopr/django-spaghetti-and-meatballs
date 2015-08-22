@@ -1,6 +1,8 @@
 django-spaghetti-and-meatballs
 ==============================
 
+|docs|
+
 Its a spicy meatball for serving up fresh hot entity-relationship diagrams straight from your django models.
 
 
@@ -82,3 +84,7 @@ A complex live-demo
 
 To see a complex example, where ``django-spaghetti-and-meatballs`` really shines,
 checkout the live version built for the `Aristotle Metadata Registry <http://aristotle.pythonanywhere.com/plate/>`_
+
+.. |docs| image:: https://readthedocs.org/projects/django-spaghetti-and-meatballs/badge/?version=latest
+    :target: https://readthedocs.org/projects/django-spaghetti-and-meatballs/?badge=latest
+    :alt: Documentation Status
