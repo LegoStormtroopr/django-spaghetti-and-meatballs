@@ -6,14 +6,14 @@ Installing spaghetti
 
 1. Install some spaghetti::
 
-  pip install django-spaghetti-and-meatballs
+    pip install django-spaghetti-and-meatballs
 
 2. Add ``"django_spaghetti"`` to your ``INSTALLED_APPS`` setting like this::
 
-  INSTALLED_APPS = [
+    INSTALLED_APPS = [
       ...
       'django_spaghetti',
-  ]
+    ]
 
 3. Add a plate of spaghetti in your ``urls.py`` like so::
 

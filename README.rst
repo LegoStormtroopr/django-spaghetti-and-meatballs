@@ -6,8 +6,8 @@ django-spaghetti-and-meatballs
 Its a spicy meatball for serving up fresh hot entity-relationship diagrams straight from your django models.
 
 
-Adding spaghetti to you project
--------------------------------
+Adding spaghetti to your project
+--------------------------------
 
 Install some spaghetti::
 

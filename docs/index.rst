@@ -47,6 +47,9 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
+   ./installing.rst
+   ./customising.rst
+   ./contributing.rst
 
 Indices and tables
 ==================
