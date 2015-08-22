@@ -20,7 +20,6 @@ You'll probably want your plate to look similar to that served by django_spaghet
 However, the important things when making a plate are:
  * make sure you import ``vis.js`` and ``vis.css`` *before* the script that creates the graph.
  * make your your script loads the ``meatballs`` (nodes) and ``spaghetti`` (edges) with the `safe django template filter <https://docs.djangoproject.com/en/1.8/ref/templates/builtins/#safe>`_
- * 
  
 Changing how vis.js is loaded
 -----------------------------
