@@ -8,12 +8,13 @@ Welcome to django-spaghetti-and-meatballs's documentation!
 
 Its a spicy meatball for serving up fresh hot entity-relationship diagrams straight from your django models.
 
-Food puns aside, django-spaghetti-and-meatballs is a django app that extracts models and documentation
-from a projects `models.py` to build rich, live, interactive entity-relationship diagrams.
+Food puns aside, django-spaghetti-and-meatballs is a django app that extracts models
+and documentation from a projects ``models.py`` to build rich, live, interactive
+`entity-relationship diagrams <https://www.wikiwand.com/en/Entity%E2%80%93relationship_model>`_.
 
 At the moment, it mines details from models:
 
- * docstring, so documentation that the same documentation can be reused in the modeling
+ * docstrings, so documentation that the same documentation can be reused in the modeling
  * fields, including the fields datatype, help_text and cardinality
  * foreign and many-to-many relationships (at the moment only many-to-many relationships get special styling, but one-to-one is coming soon)
 
@@ -40,11 +41,11 @@ a model and still being confused about the existence of a field shows a definite
 
 .. image:: https://cloud.githubusercontent.com/assets/2173174/9053053/a45e185c-3ab2-11e5-9ea0-89dafb7ac274.png
 
+
 Contents:
 
 .. toctree::
    :maxdepth: 2
-
 
 
 Indices and tables
