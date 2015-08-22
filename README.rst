@@ -7,13 +7,7 @@ Its a spicy meatball for serving up fresh hot entity-relationship diagrams strai
 Adding spaghetti to you project
 -------------------------------
 
-At this stage, you need to clone the repository and make sure the ``django_spaghetti``
-directory is somewhere your project can import it.
-
-Configure your sauce
-++++++++++++++++++++
-
-Insrall some spaghetti::
+Install some spaghetti::
 
   pip install django-spaghetti-and-meatballs
 
@@ -23,6 +17,9 @@ Add ``"django_spaghetti"`` to your ``INSTALLED_APPS`` setting like this::
       ...
       'django_spaghetti',
   ]
+
+Configure your sauce
+++++++++++++++++++++
 
 ``django-spaghetti-and-meatballs`` takes a few options set in the ``SPAGHETTI_SAUCE``
 variable from your projects ``settings.py`` file that make it `extra spicy`::
@@ -63,6 +60,8 @@ Colored edges illustrate foreign key relations, with arrows pointing from the de
 model to the related model, while gray edges illustrate many-to-many relations. 
 Different colors signify the different Django apps, and when relations link between 
 apps the edges are colored with a gradient.
+
+.. image:: https://cloud.githubusercontent.com/assets/2173174/9053053/a45e185c-3ab2-11e5-9ea0-89dafb7ac274.png
 
 Hovering over a model, gives a pop-up that lists the following information:
 
