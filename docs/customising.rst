@@ -35,4 +35,36 @@ Changing how vis.js lays out the graph
 --------------------------------------
 
 Dealing ``vis.js`` network customisation is beyond the scope of this project, but
-`vis.js has comprehensive documentation of their netowkr library available online <http://visjs.org/docs/network/>`_.
+`vis.js has comprehensive documentation of their network library available online <http://visjs.org/docs/network/>`_.
+In the ``plate.html`` template you can make changes to the settings when you setup the graph.
+By default ``django-spaghetti-and-meatballs`` uses a hierarchical layout, but any setup should work.
+For example, to turn off hierarchical layout you can use the settings::
+
+    "layout": {
+        hierarchical: false,
+    },
+
+New flavours of meatballs
+-------------------------
+
+By default, ``django-spaghetti-and-meatballs`` shows a model with all its fields
+and the documentation from the docstring in a hover over pop-up pane.
+The layout for this box is included in the ``django_spaghetti/meatball.html``
+template.
+To change how models are shown on hover, just override the
+``django_spaghetti/meatball.html`` template in your projects ``templates`` directory.
+
+You'll probably want your meatball to taste similar to that served by django_spaghetti,
+`which can be viewed on github <https://github.com/LegoStormtroopr/django-spaghetti-and-meatballs/blob/master/django_spaghetti/templates/django_spaghetti/meatball.html>`_ 
+
+For example, to show just the models name, number of fields and its documentation your template would look like this::
+
+    <div style="max-width:350px;white-space: normal;">
+        <div style="border-bottom:1px solid black">
+            Model: {{ model.model }}<br>
+            # of fields: {{ fields|length }}
+        </div>
+        <tt style="white-space:pre-line">
+            {{ model.doc }}
+        </tt>
+    </div>
