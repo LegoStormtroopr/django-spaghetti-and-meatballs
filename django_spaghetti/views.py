@@ -5,7 +5,6 @@ from django.conf import settings
 from django.db.models.fields import related
 from django.template.loader import get_template
 from django.template import Context
-
 import json
 
 graph_settings = getattr(settings, 'SPAGHETTI_SAUCE', {})
@@ -23,6 +22,7 @@ def plate(request):
             continue
         label = "%s"%(model.model)
         fields = [f for f in model.model_class()._meta.fields if not str(f.name).endswith('_ptr')]
+        parents = [f for f in model.model_class()._meta.fields if str(f.name).endswith('_ptr')]
         many = [f for f in model.model_class()._meta.many_to_many]
         if graph_settings.get('show_fields',True):
             label += "\n%s\n"%("-"*len(model.model))
@@ -43,6 +43,35 @@ def plate(request):
                         'arrows':{'to':{'scaleFactor':0.75}}
                     }
                 )
+            elif type(f) == related.OneToOneField:
+                _to = tuple(str(f.related_field).lower().split('.')[0:2])
+                if _to[0] != model.app_label:
+                    edge_color = {'inherit':'both'}
+                edges.append(
+                    {
+                        'from':_id,
+                        'to':"%s__%s"%_to,
+                        'color':edge_color,
+                        #'arrows':{'to':{'scaleFactor':0.75}}
+                        'font': {'align': 'middle'},
+                        'label':'|'
+                    }
+                )
+        for f in parents:
+            _to = tuple(str(f.related_field).lower().split('.')[0:2])
+            if _to[0] != model.app_label:
+                edge_color = {'inherit':'both'}
+            edges.append(
+                {
+                    'from':_id,
+                    'to':"%s__%s"%_to,
+                    'color':edge_color,
+                    #'arrows':{'to':{'scaleFactor':0.75}}
+                    'font': {'align': 'middle'},
+                    'label':'is a',
+                    'dashes':True
+                }
+            )
         for f in many:
             #print dir(f)
             m = f.rel.to._meta
@@ -53,7 +82,7 @@ def plate(request):
                     'from':_id,
                     'to':"%s__%s"%(m.app_label,m.model_name),
                     'color':edge_color,
-                    'arrows':{'to':{'scaleFactor':0.5}, 'from':{'scaleFactor':0.5}},
+                    'arrows':{'to':{'scaleFactor':1}, 'from':{'scaleFactor':1}},
                 }
             )
         nodes.append(
