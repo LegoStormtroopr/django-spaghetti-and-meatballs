@@ -16,6 +16,9 @@ def plate(request):
     nodes = []
     edges = []
     for model in models:
+        if (model.model_class() == None):
+            continue
+
         model.doc  = model.model_class().__doc__
         _id = "%s__%s"%(model.app_label,model.model)
         if _id in excludes:
