@@ -17,7 +17,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 's13c_ip1@@5-cx8v50r6!kzk626dta-un6u-89g)!04m$7%52_'
+SECRET_KEY = 'jsut_another_test_key'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -30,27 +30,13 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
+    'django_spaghetti',
     'django.contrib.staticfiles',
 )
 
-MIDDLEWARE_CLASSES = (
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-)
+ROOT_URLCONF = 'django_spaghetti.urls'
 
-ROOT_URLCONF = 'data_interrogator.urls'
-
-WSGI_APPLICATION = 'data_interrogator.wsgi.application'
+WSGI_APPLICATION = 'django_spaghetti.tests.wsgi.application'
 
 
 # Database

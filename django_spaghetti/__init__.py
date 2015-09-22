@@ -1,11 +1,10 @@
 __version_info__ = {
     'major': 0,
     'minor': 1,
-    'micro': 1,
+    'micro': 2,
     'releaselevel': 'final',
     'serial': 0
 }
-
 
 def get_version(release_level=True):
     """
@@ -15,6 +14,5 @@ def get_version(release_level=True):
     if release_level and __version_info__['releaselevel'] != 'final':
         vers.append('%(releaselevel)s%(serial)i' % __version_info__)
     return ''.join(vers)
-
 
 __version__ = get_version()
