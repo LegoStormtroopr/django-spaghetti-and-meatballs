@@ -1,7 +1,7 @@
 django-spaghetti-and-meatballs
 ==============================
 
-|docs|
+|docs| |code-climate|
 
 Its a spicy meatball for serving up fresh hot entity-relationship diagrams straight from your django models.
 
@@ -88,3 +88,7 @@ checkout the live version built for the `Aristotle Metadata Registry <http://ari
 .. |docs| image:: https://readthedocs.org/projects/django-spaghetti-and-meatballs/badge/?version=latest
     :target: https://readthedocs.org/projects/django-spaghetti-and-meatballs/?badge=latest
     :alt: Documentation Status
+
+.. |code-climate| image:: https://codeclimate.com/github/LegoStormtroopr/django-spaghetti-and-meatballs/badges/gpa.svg
+   :target: https://codeclimate.com/github/LegoStormtroopr/django-spaghetti-and-meatballs
+   :alt: Code Climate
