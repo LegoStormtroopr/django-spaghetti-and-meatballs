@@ -35,7 +35,10 @@ def plate(request):
         for f in fields:
             f.ftype = str(f.__class__).split('.')[-1][:-2]
             if type(f) == related.ForeignKey:
-                _to = tuple(str(f.related_field).lower().split('.')[0:2])
+                try:
+                    _to = tuple(str(f.related_field).lower().split('.')[0:2])
+                except:
+                    _to = tuple(str(f.target_field).lower().split('.')[0:2])
                 if _to[0] != model.app_label:
                     edge_color = {'inherit':'both'}
                 edges.append(
@@ -47,7 +50,10 @@ def plate(request):
                     }
                 )
             elif type(f) == related.OneToOneField:
-                _to = tuple(str(f.related_field).lower().split('.')[0:2])
+                try:
+                    _to = tuple(str(f.related_field).lower().split('.')[0:2])
+                except:
+                    _to = tuple(str(f.target_field).lower().split('.')[0:2])
                 if _to[0] != model.app_label:
                     edge_color = {'inherit':'both'}
                 edges.append(
@@ -61,7 +67,10 @@ def plate(request):
                     }
                 )
         for f in parents:
-            _to = tuple(str(f.related_field).lower().split('.')[0:2])
+            try:
+                _to = tuple(str(f.related_field).lower().split('.')[0:2])
+            except:
+                _to = tuple(str(f.target_field).lower().split('.')[0:2])
             if _to[0] != model.app_label:
                 edge_color = {'inherit':'both'}
             edges.append(
