@@ -35,6 +35,7 @@ def plate(request):
         for f in fields:
             f.ftype = str(f.__class__).split('.')[-1][:-2]
             if type(f) == related.ForeignKey:
+                # related_field deprecated in Django 1.9.
                 try:
                     _to = tuple(str(f.related_field).lower().split('.')[0:2])
                 except:
@@ -50,6 +51,7 @@ def plate(request):
                     }
                 )
             elif type(f) == related.OneToOneField:
+                # related_field deprecated in Django 1.9.
                 try:
                     _to = tuple(str(f.related_field).lower().split('.')[0:2])
                 except:
@@ -67,6 +69,7 @@ def plate(request):
                     }
                 )
         for f in parents:
+            # related_field deprecated in Django 1.9.
             try:
                 _to = tuple(str(f.related_field).lower().split('.')[0:2])
             except:
