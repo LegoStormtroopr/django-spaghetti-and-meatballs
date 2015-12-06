@@ -1,6 +1,7 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import url
 from django.contrib import admin
+from django_spaghetti.views import plate
 
-urlpatterns = patterns('',
-    url(r'^$', 'django_spaghetti.views.plate', name='plate'),
-)
+urlpatterns = [
+    url(r'^$', plate, name='plate'),
+]
