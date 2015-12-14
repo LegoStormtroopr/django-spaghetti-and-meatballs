@@ -4,7 +4,7 @@ class PoliceOfficer(models.Model):
     """
     An officer of the NYPD
     """
-    badge_number = models.IntegerField(max_length=10, primary_key=True)
+    badge_number = models.IntegerField(primary_key=True)
     first_name = models.CharField(max_length=200)
     surname = models.CharField(max_length=200)
     rank = models.CharField(max_length=200)
@@ -16,7 +16,7 @@ class PoliceStation(models.Model):
     pass
 
 class Precinct(PoliceStation):
-    number = models.IntegerField(max_length=10, primary_key=True)
+    number = models.IntegerField(primary_key=True)
     burrough = models.CharField(max_length=20)
     captain = models.OneToOneField(PoliceOfficer)
     class Meta:
