@@ -41,7 +41,15 @@ def plate(request):
                             'color':edge_color,
                         }
 
-                if type(f) == related.ForeignKey:
+                if str(f.name).endswith('_ptr'):
+                    #fields that end in _ptr are pointing to a parent object
+                    edge.update({
+                    'arrows':{'to':{'scaleFactor':0.75}}, #needed to draw from-to
+                    'font': {'align': 'middle'},
+                    'label':'is a',
+                    'dashes':True
+                        })
+                elif type(f) == related.ForeignKey:
                     edge.update({
                             'arrows':{'to':{'scaleFactor':0.75}}
                         })
@@ -54,14 +62,6 @@ def plate(request):
                     edge.update({
                             'color':{'color':'gray'},
                             'arrows':{'to':{'scaleFactor':1}, 'from':{'scaleFactor':1}},
-                        })
-                elif str(f.name).endswith('_ptr'):
-                    #fields that end in _ptr are pointing to a parent object
-                    edge.update({
-                    'arrows':{'to':{'scaleFactor':0.75}}, #needed to draw from-to
-                    'font': {'align': 'middle'},
-                    'label':'is a',
-                    'dashes':True
                         })
 
                 edges.append(edge)
