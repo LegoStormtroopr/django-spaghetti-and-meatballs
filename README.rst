@@ -1,7 +1,7 @@
 django-spaghetti-and-meatballs
 ==============================
 
-|docs| |code-climate|
+|docs| |travis| |code-climate| |coveralls|
 
 Its a spicy meatball for serving up fresh hot entity-relationship diagrams straight from your django models.
 
@@ -92,3 +92,9 @@ checkout the live version built for the `Aristotle Metadata Registry <http://ari
 .. |code-climate| image:: https://codeclimate.com/github/LegoStormtroopr/django-spaghetti-and-meatballs/badges/gpa.svg
    :target: https://codeclimate.com/github/LegoStormtroopr/django-spaghetti-and-meatballs
    :alt: Code Climate
+
+.. |coveralls| image:: https://coveralls.io/repos/LegoStormtroopr/django-spaghetti-and-meatballs/badge.svg?branch=master&service=github
+   :target: https://coveralls.io/github/LegoStormtroopr/django-spaghetti-and-meatballs?branch=master
+
+.. |travis| image:: https://travis-ci.org/LegoStormtroopr/django-spaghetti-and-meatballs.svg?branch=master
+    :target: https://travis-ci.org/LegoStormtroopr/django-spaghetti-and-meatballs
