@@ -18,12 +18,18 @@ def plate(request):
     for model in models:
         if (model.model_class() == None):
             continue
+        model.is_proxy = model.model_class()._meta.proxy
+        if (model.is_proxy and not graph_settings.get('show_proxy',False)):
+            continue
 
         model.doc  = model.model_class().__doc__
         _id = "%s__%s"%(model.app_label,model.model)
         if _id in excludes:
             continue
-        label = "%s"%(model.model)
+        if model.is_proxy:
+            label = "(P) %s"%(model.model)
+        else:
+            label = "%s"%(model.model)
         fields = [f for f in model.model_class()._meta.fields]
         many = [f for f in model.model_class()._meta.many_to_many]
         if graph_settings.get('show_fields',True):
@@ -65,6 +71,14 @@ def plate(request):
                         })
 
                 edges.append(edge)
+        if model.is_proxy:
+            proxy = model.model_class()._meta.proxy_for_model._meta
+            model.proxy = proxy
+            edge =  {   'to':_id,
+                        'from':"%s__%s"%(proxy.app_label,proxy.model_name),
+                        'color':edge_color,
+                    }
+            edges.append(edge)
 
         nodes.append(
             {

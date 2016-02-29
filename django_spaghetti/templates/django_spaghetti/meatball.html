@@ -1,5 +1,8 @@
 <div style="max-width:350px;white-space: normal;">
 <div style="border-bottom:1px solid black">
+    {% if model.is_proxy %}
+    Proxy for: {{ model.proxy }} <br>
+    {% endif %}
     Model: {{ model.model }}<br>
     App: {{ model.app_label }}
 </div>
