@@ -12,6 +12,11 @@ class PoliceOfficer(models.Model):
     
     arrests = models.ManyToManyField("Arrest",related_name="arresting_officers")
 
+
+class PoliceStation(models.Model):
+    officers = models.ForeignKey("PoliceOfficer")
+
+
 class Precinct(PoliceStation):
     """
     A precinct of officers
@@ -20,12 +25,12 @@ class Precinct(PoliceStation):
     number = models.IntegerField(primary_key=True)
     burrough = models.CharField(max_length=20)
     captain = models.OneToOneField(PoliceOfficer)
-    officers = models.ForeignKey("PoliceOfficer",related_name="precinct")
     
     class Meta:
         unique_together = ("burrough","number")
     def natural_key(self):
         return (self.burrough,self.number)
+
 
 class Division(PoliceStation):
     """
@@ -33,13 +38,14 @@ class Division(PoliceStation):
     E.g. Major Crimes Unit
     """
     name = models.CharField(max_length=200)
-    officers = models.ForeignKey("PoliceOfficer",related_name="division")
+
 
 class Arrest(models.Model):
     alleged_crime = models.CharField(max_length=20)
     perp = models.ForeignKey("Perpetrator")
     arrest_date = models.DateField()
     processing_date = models.DateField()
+
 
 class Perpetrator(models.Model):
     """
