@@ -86,7 +86,6 @@ class Plate(View):
                 if f.rel is not None:
                     m = f.rel.to._meta
                     to_id = "%s__%s" % (m.app_label, m.model_name)
-                    print m
                     if not(_id == to_id and graph_settings.get('ignore_self_referential', False)):
                         if m.app_label != model.app_label:
                             edge_color = {'inherit': 'both'}
