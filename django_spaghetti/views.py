@@ -12,17 +12,17 @@ from django.views.generic import View
 class Plate(View):
     """
     This class-based-view serves up spaghetti and meatballs.
-    
+
     Override the following class properties when calling `as_view`:
-    
+
     * `settings` - sets a view specific to use instead of the `SPAGHETTI_SAUCE` django settings
     * `override_settings` - overrides specified settings from `SPAGHETTI_SAUCE` django settings
     * `plate_template_name` - overrides the template name for the whole view
     * `meatball_template_name` - overrides the template used to render nodes
-    
+
     For example the below URL pattern would specify a path to a view that displayed
     models from the `auth` app with the given templates::
-    
+
         url(r'^user_graph/$',
             Plate.as_view(
                 settings = {
@@ -31,7 +31,6 @@ class Plate(View):
                 meatball_template_name = "my_app/user_node.html",
                 plate_template_name = "my_app/auth_details.html"
         )
-
     """
     settings = None
     override_settings = {}
