@@ -9,6 +9,7 @@ env:
 install:
 # command to install dependencies
   - "pip install coveralls"
+  - pip install pep8
   - pip install -q Django==$DJANGO
   - "pip install ."
 before_script:
