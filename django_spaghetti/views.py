@@ -61,13 +61,11 @@ class Plate(View):
                     if not(_id == to_id and graph_settings.get('ignore_self_referential', False)):
                         if m.app_label != model.app_label:
                             edge_color = {'inherit':'both'}
-                        edge =  {   'from':_id,
-                                    'to':to_id,
-                                    'color':edge_color,
-                                }
+                        
+                        edge =  {'from':_id, 'to':to_id, 'color':edge_color }
         
                         if str(f.name).endswith('_ptr'):
-                            #fields that end in _ptr are pointing to a parent object
+                            # fields that end in _ptr are pointing to a parent object
                             edge.update({
                             'arrows':{'to':{'scaleFactor':0.75}}, #needed to draw from-to
                             'font': {'align': 'middle'},
