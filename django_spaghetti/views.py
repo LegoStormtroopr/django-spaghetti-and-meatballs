@@ -10,14 +10,41 @@ from django.views.generic import View
 
 
 class Plate(View):
+    """
+    This class-based-view serves up spaghetti and meatballs.
+    
+    Override the following class properties when calling `as_view`:
+    
+    * `settings` - sets a view specific to use instead of the `SPAGHETTI_SAUCE` django settings
+    * `override_settings` - overrides specified settings from `SPAGHETTI_SAUCE` django settings
+    * `plate_template_name` - overrides the template name for the whole view
+    * `meatball_template_name` - overrides the template used to render nodes
+    
+    For example the below URL pattern would specify a path to a view that displayed
+    models from the `auth` app with the given templates::
+    
+        url(r'^user_graph/$',
+            Plate.as_view(
+                settings = {
+                    'apps': ['auth'],
+                }
+                meatball_template_name = "my_app/user_node.html",
+                plate_template_name = "my_app/auth_details.html"
+        )
+
+    """
     settings = None
     override_settings = {}
-    template_name = 'django_spaghetti/plate.html'
+    plate_template_name = 'django_spaghetti/plate.html'
+    meatball_template_name = "django_spaghetti/meatball.html"
 
     def get(self, request):
         return self.plate()
 
     def plate(self):
+        """
+        Serves up a delicious plate with your models
+        """
         request = self.request
         if self.settings is None:
             graph_settings = getattr(settings, 'SPAGHETTI_SAUCE', {})
@@ -107,7 +134,7 @@ class Plate(View):
                     'label': label,
                     'shape': 'box',
                     'group': model.app_label,
-                    'title': get_template("django_spaghetti/meatball.html").render(
+                    'title': get_template(self.meatball_template_name).render(
                         Context({'model': model, 'fields': fields})
                         )
                 }
@@ -117,9 +144,13 @@ class Plate(View):
             'meatballs': json.dumps(nodes),
             'spaghetti': json.dumps(edges)
         }
-        return render(request, self.template_name, data)
+        return render(request, self.plate_template_name, data)
 
     def get_node_label(self, model):
+        """
+        Defines how labels are constructed from models.
+        Default - uses verbose name, lines breaks where sensible
+        """
         if model.is_proxy:
             label = "(P) %s" % (model.name.title())
         else:

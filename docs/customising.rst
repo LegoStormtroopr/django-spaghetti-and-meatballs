@@ -67,3 +67,10 @@ For example, to show just the models name, number of fields and its documentatio
             {{ model.doc }}
         </tt>
     </div>
+
+
+Using class-based views
+-----------------------
+
+.. autoclass:: django_spaghetti.views.Plate
+   :members:

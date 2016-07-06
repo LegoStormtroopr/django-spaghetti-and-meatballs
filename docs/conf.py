@@ -35,6 +35,13 @@ extensions = [
     'sphinx.ext.viewcode',
 ]
 
+sys.path.insert(0, os.path.abspath('../'))
+sys.path.insert(0, os.path.abspath('../django_spaghetti/'))
+os.environ['DJANGO_SETTINGS_MODULE'] = 'django_spaghetti.tests.settings'
+import django
+django.setup()
+
+
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 

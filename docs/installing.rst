@@ -21,6 +21,20 @@ Installing spaghetti
       url(r'^plate/', include('django_spaghetti.urls')),
     )
 
+4. Or use the class-based view if you want more flexibility::
+
+    urlpatterns += patterns('',
+      url(r'^plate/$',
+        Plate.as_view(
+          override_settings = {
+              'apps':['auth','polls'],
+            }
+        ),
+        name='plate'
+      ),
+    )
+
+
 Configuring meatballs
 ---------------------
 
