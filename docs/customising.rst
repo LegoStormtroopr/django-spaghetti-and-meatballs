@@ -15,7 +15,7 @@ To serve the spaghetti in a fancier setting, just override the
 ``django_spaghetti/plate.html`` template in your projects ``templates`` directory.
 
 You'll probably want your plate to look similar to that served by django_spaghetti,
-`which can be viewed on github <https://github.com/LegoStormtroopr/django-spaghetti-and-meatballs/blob/master/django_spaghetti/templates/django_spaghetti/plate.html>`_ 
+`which can be viewed on github <https://github.com/LegoStormtroopr/django-spaghetti-and-meatballs/blob/master/django_spaghetti/templates/django_spaghetti/plate.html>`__ 
 
 However, the important things when making a plate are:
  * make sure you import ``vis.js`` and ``vis.css`` *before* the script that creates the graph.
@@ -54,7 +54,7 @@ To change how models are shown on hover, just override the
 ``django_spaghetti/meatball.html`` template in your projects ``templates`` directory.
 
 You'll probably want your meatball to taste similar to that served by django_spaghetti,
-`which can be viewed on github <https://github.com/LegoStormtroopr/django-spaghetti-and-meatballs/blob/master/django_spaghetti/templates/django_spaghetti/meatball.html>`_ 
+`which can be viewed on github <https://github.com/LegoStormtroopr/django-spaghetti-and-meatballs/blob/master/django_spaghetti/templates/django_spaghetti/meatball.html>`__ 
 
 For example, to show just the models name, number of fields and its documentation your template would look like this::
 

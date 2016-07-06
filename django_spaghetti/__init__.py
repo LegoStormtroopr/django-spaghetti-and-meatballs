@@ -6,6 +6,7 @@ __version_info__ = {
     'serial': 0
 }
 
+
 def get_version(release_level=True):
     """
     Return the formatted version information

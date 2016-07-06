@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class PoliceOfficer(models.Model):
     """
     An officer of the NYPD.
@@ -9,8 +10,7 @@ class PoliceOfficer(models.Model):
     first_name = models.CharField(max_length=200)
     surname = models.CharField(max_length=200)
     rank = models.CharField(max_length=200)
-    
-    arrests = models.ManyToManyField("Arrest",related_name="arresting_officers")
+    arrests = models.ManyToManyField("Arrest", related_name="arresting_officers")
 
 
 class PoliceStation(models.Model):
@@ -25,11 +25,12 @@ class Precinct(PoliceStation):
     number = models.IntegerField(primary_key=True)
     burrough = models.CharField(max_length=20)
     captain = models.OneToOneField(PoliceOfficer)
-    
+
     class Meta:
-        unique_together = ("burrough","number")
+        unique_together = ("burrough", "number")
+
     def natural_key(self):
-        return (self.burrough,self.number)
+        return (self.burrough, self.number)
 
 
 class Division(PoliceStation):
