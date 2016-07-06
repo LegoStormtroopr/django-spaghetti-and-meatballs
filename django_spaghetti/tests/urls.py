@@ -5,19 +5,17 @@ from django_spaghetti.views import plate, Plate
 urlpatterns = [
     url(r'^$', plate, name='plate'),
     url(r'^test/plate_settings$', Plate.as_view(
-        settings = {
+        settings={
             'apps': ['auth'],
             'exclude': {},
         }
-        
     ), name='test_plate_settings'),
     url(r'^test/plate_override$', Plate.as_view(
-        override_settings = {
+        override_settings={
             'exclude': {
-                'tests':['policestation']
+                'tests': ['policestation']
             },
         },
-        meatball_template_name = "tests/meatball.html"
-        
+        meatball_template_name="tests/meatball.html"
     ), name='test_plate_override$'),
 ]
