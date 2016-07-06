@@ -56,37 +56,40 @@ class Plate(View):
             for f in fields+many:
                 if f.rel is not None:
                     m = f.rel.to._meta
-                    if m.app_label != model.app_label:
-                        edge_color = {'inherit':'both'}
-                    edge =  {   'from':_id,
-                                'to':"%s__%s"%(m.app_label,m.model_name),
-                                'color':edge_color,
-                            }
-    
-                    if str(f.name).endswith('_ptr'):
-                        #fields that end in _ptr are pointing to a parent object
-                        edge.update({
-                        'arrows':{'to':{'scaleFactor':0.75}}, #needed to draw from-to
-                        'font': {'align': 'middle'},
-                        'label':'is a',
-                        'dashes':True
-                            })
-                    elif type(f) == related.ForeignKey:
-                        edge.update({
-                                'arrows':{'to':{'scaleFactor':0.75}}
-                            })
-                    elif type(f) == related.OneToOneField:
-                        edge.update({
-                                'font': {'align': 'middle'},
-                                'label':'|'
-                            })
-                    elif type(f) == related.ManyToManyField:
-                        edge.update({
-                                'color':{'color':'gray'},
-                                'arrows':{'to':{'scaleFactor':1}, 'from':{'scaleFactor':1}},
-                            })
-    
-                    edges.append(edge)
+                    to_id = "%s__%s"%(m.app_label,m.model_name)
+                    print m
+                    if not(_id == to_id and graph_settings.get('ignore_self_referential', False)):
+                        if m.app_label != model.app_label:
+                            edge_color = {'inherit':'both'}
+                        edge =  {   'from':_id,
+                                    'to':to_id,
+                                    'color':edge_color,
+                                }
+        
+                        if str(f.name).endswith('_ptr'):
+                            #fields that end in _ptr are pointing to a parent object
+                            edge.update({
+                            'arrows':{'to':{'scaleFactor':0.75}}, #needed to draw from-to
+                            'font': {'align': 'middle'},
+                            'label':'is a',
+                            'dashes':True
+                                })
+                        elif type(f) == related.ForeignKey:
+                            edge.update({
+                                    'arrows':{'to':{'scaleFactor':0.75}}
+                                })
+                        elif type(f) == related.OneToOneField:
+                            edge.update({
+                                    'font': {'align': 'middle'},
+                                    'label':'|'
+                                })
+                        elif type(f) == related.ManyToManyField:
+                            edge.update({
+                                    'color':{'color':'gray'},
+                                    'arrows':{'to':{'scaleFactor':1}, 'from':{'scaleFactor':1}},
+                                })
+        
+                        edges.append(edge)
             if model.is_proxy:
                 proxy = model.model_class()._meta.proxy_for_model._meta
                 model.proxy = proxy
