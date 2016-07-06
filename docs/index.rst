@@ -39,7 +39,9 @@ and the code and documentation never get out of sync.
 It also meant that I (and others) could easily spot gaps in documentation. While some code is self-documenting, hovering over
 a model and still being confused about the existence of a field shows a definite need for explanation.
 
-.. image:: https://cloud.githubusercontent.com/assets/2173174/9053053/a45e185c-3ab2-11e5-9ea0-89dafb7ac274.png
+.. raw:: html
+
+   <img src="https://cloud.githubusercontent.com/assets/2173174/9053053/a45e185c-3ab2-11e5-9ea0-89dafb7ac274.png"/>
 
 
 Contents:
