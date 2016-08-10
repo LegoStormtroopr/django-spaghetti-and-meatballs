@@ -6,6 +6,7 @@ python:
 env:
   - DJANGO=1.8
   - DJANGO=1.9
+  - DJANGO=1.10
 install:
 # command to install dependencies
   - "pip install coveralls"
@@ -20,8 +21,6 @@ script:
   - coverage run --branch --source=django_spaghetti manage.py test
 matrix:
   exclude:
-    - python: "2.6"
-      env: DJANGO=1.7
     - python: "2.6"
       env: DJANGO=1.8
 after_success:
