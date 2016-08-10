@@ -37,7 +37,7 @@ TEMPLATES = [
     },
 ]
 
-TEMPLATE_DIRS = TEMPLATES['DIRS']
+TEMPLATE_DIRS = TEMPLATES[0]['DIRS']
 
 INSTALLED_APPS = (
     'django_spaghetti.tests',
