@@ -26,8 +26,18 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
-TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 # Application definition
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            [os.path.join(BASE_DIR, 'templates')]
+        ],
+        'APP_DIRS': True,
+    },
+]
+
+TEMPLATE_DIRS = TEMPLATES['DIRS']
 
 INSTALLED_APPS = (
     'django_spaghetti.tests',
