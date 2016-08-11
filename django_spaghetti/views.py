@@ -4,7 +4,6 @@ from django.shortcuts import render
 from django.conf import settings
 from django.db.models.fields import related
 from django.template.loader import get_template
-from django.template import Context
 import json
 from django.views.generic import View
 
@@ -137,7 +136,7 @@ class Plate(View):
                     'shape': 'box',
                     'group': model.app_label,
                     'title': get_template(self.meatball_template_name).render(
-                        Context({'model': model, 'fields': fields})
+                        {'model': model, 'fields': fields}
                         )
                 }
             )

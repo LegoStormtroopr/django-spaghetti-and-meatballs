@@ -83,7 +83,7 @@ A complex live-demo
 -------------------
 
 To see a complex example, where ``django-spaghetti-and-meatballs`` really shines,
-checkout the live version built for the `Aristotle Metadata Registry <http://aristotle.pythonanywhere.com/plate/>`_
+checkout the live version built for the `Aristotle Metadata Registry <http://registry.aristotlemetadata.com/labs/plate/>`_
 
 .. |docs| image:: https://readthedocs.org/projects/django-spaghetti-and-meatballs/badge/?version=latest
     :target: https://http://django-spaghetti-and-meatballs.readthedocs.io/en/latest/
