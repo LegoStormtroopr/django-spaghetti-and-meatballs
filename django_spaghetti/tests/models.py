@@ -10,7 +10,11 @@ class PoliceOfficer(models.Model):
     first_name = models.CharField(max_length=200)
     surname = models.CharField(max_length=200)
     rank = models.CharField(max_length=200)
-    arrests = models.ManyToManyField("Arrest", related_name="arresting_officers")
+    arrests = models.ManyToManyField(
+        "Arrest",
+        related_name="arresting_officers",
+        help_text='All arrests made by the officer'
+    )
 
 
 class PoliceStation(models.Model):
