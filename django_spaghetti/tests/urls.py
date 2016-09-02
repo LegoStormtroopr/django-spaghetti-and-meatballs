@@ -9,6 +9,11 @@ urlpatterns = [
             'exclude': {},
         }
     ), name='test_plate_settings'),
+    url(r'^test/plate_show_m2m_field_detail$', Plate.as_view(
+        override_settings={
+            'show_m2m_field_detail': True
+        }
+    ), name='test_plate_show_m2m_field_detail'),
     url(r'^test/plate_override$', Plate.as_view(
         override_settings={
             'exclude': {

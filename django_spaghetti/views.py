@@ -129,6 +129,9 @@ class Plate(View):
                 }
                 edges.append(edge)
 
+            all_node_fields = fields
+            if graph_settings.get('show_m2m_field_detail', False):
+                all_node_fields = fields + many
             nodes.append(
                 {
                     'id': _id,
@@ -136,7 +139,7 @@ class Plate(View):
                     'shape': 'box',
                     'group': model.app_label,
                     'title': get_template(self.meatball_template_name).render(
-                        {'model': model, 'fields': fields}
+                        {'model': model, 'fields': all_node_fields}
                         )
                 }
             )
