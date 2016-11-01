@@ -30,3 +30,26 @@ class LoadThePlate(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTrue('policeofficer' in str(response.content).lower())
         self.assertTrue('policestation' not in str(response.content).lower())
+
+    def test_no_override_after_override(self):
+        response1 = self.client.get("/test/plate_override")
+        response2 = self.client.get("/")
+        resp_str = str(response2.content)
+        self.assertEqual(response1.status_code, 200)
+        self.assertEqual(response2.status_code, 200)
+        self.assertTrue('policeofficer' in str(response1.content).lower())
+        self.assertTrue('policestation' not in str(response1.content).lower())
+        self.assertTrue('Officer' in resp_str)
+        self.assertTrue('All arrests made by the officer' not in resp_str)
+
+    def test_meatball(self):
+        response = self.client.get("/test/plate_show_m2m_field_detail")
+        resp_str = str(response.content)
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue('IntegerField' in resp_str)
+        self.assertTrue('CharField' in resp_str)
+        self.assertTrue('ManyToManyField' in resp_str)
+        self.assertTrue('ForeignKey' in resp_str)
+        self.assertTrue('OneToOneField' in resp_str)
+        self.assertTrue('DateField' in resp_str)
+        self.assertTrue('URLField' not in resp_str)
