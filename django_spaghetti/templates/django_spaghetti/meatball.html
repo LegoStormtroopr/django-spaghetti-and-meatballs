@@ -15,7 +15,7 @@
         {% for field in fields %}
         <li>
             {% if field.unique %}<u>{{field.name}}</u>{%else%}{{field.name}}{%endif%}
-            <small>{{field.ftype}}</small><br>
+            <small>{{field.get_internal_type}}</small><br>
             <small>{{field.help_text}}</small>
         </li>
         {% endfor %}

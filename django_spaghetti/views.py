@@ -1,3 +1,5 @@
+from copy import deepcopy
+
 from django.contrib.contenttypes.models import ContentType
 from django.shortcuts import render
 
@@ -45,7 +47,7 @@ class Plate(View):
         """
         request = self.request
         if self.settings is None:
-            graph_settings = getattr(settings, 'SPAGHETTI_SAUCE', {})
+            graph_settings = deepcopy(getattr(settings, 'SPAGHETTI_SAUCE', {}))
             graph_settings.update(self.override_settings)
         else:
             graph_settings = self.settings
