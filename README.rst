@@ -86,7 +86,7 @@ To see a complex example, where ``django-spaghetti-and-meatballs`` really shines
 checkout the live version built for the `Aristotle Metadata Registry <http://registry.aristotlemetadata.com/labs/plate/>`_
 
 .. |docs| image:: https://readthedocs.org/projects/django-spaghetti-and-meatballs/badge/?version=latest
-    :target: https://http://django-spaghetti-and-meatballs.readthedocs.io/en/latest/
+    :target: https://django-spaghetti-and-meatballs.readthedocs.io/en/latest/
     :alt: Documentation Status
 
 .. |code-climate| image:: https://codeclimate.com/github/LegoStormtroopr/django-spaghetti-and-meatballs/badges/gpa.svg
