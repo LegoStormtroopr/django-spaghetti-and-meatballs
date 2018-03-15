@@ -9,11 +9,15 @@ Its a spicy meatball for serving up fresh hot entity-relationship diagrams strai
 Adding spaghetti to your project
 --------------------------------
 
-Install some spaghetti::
+Install some spaghetti:
+
+.. code-block:: sh
 
   pip install django-spaghetti-and-meatballs
 
-Add ``"django_spaghetti"`` to your ``INSTALLED_APPS`` setting like this::
+Add ``"django_spaghetti"`` to your ``INSTALLED_APPS`` setting like this:
+
+.. code-block:: python
 
   INSTALLED_APPS = [
       ...
@@ -24,12 +28,14 @@ Configure your sauce
 ++++++++++++++++++++
 
 ``django-spaghetti-and-meatballs`` takes a few options set in the ``SPAGHETTI_SAUCE``
-variable from your projects ``settings.py`` file that make it `extra spicy`::
+variable from your projects ``settings.py`` file that make it `extra spicy`:
+
+.. code-block:: python
 
   SPAGHETTI_SAUCE = {
-    'apps':['auth','polls'],
-    'show_fields':False,
-    'exclude':{'auth':['user']}
+      'apps': ['auth', 'polls'],
+      'show_fields': False,
+      'exclude': {'auth': ['user']},
   }
 
 In the above dictionary, the following settings are used:
@@ -44,10 +50,12 @@ If its not working as expected make sure your app labels and model names are all
 Serve your plate in your urls file
 ++++++++++++++++++++++++++++++++++
 
-Once you've configured your sauce, make sure you serve up a plate of spaghetti in your ``urls.py`` like so::
+Once you've configured your sauce, make sure you serve up a plate of spaghetti in your ``urls.py`` like so:
+
+.. code-block:: python
 
     urlpatterns += patterns('',
-      url(r'^plate/', include('django_spaghetti.urls')),
+        url(r'^plate/', include('django_spaghetti.urls')),
     )
 
 A sample platter
@@ -72,12 +80,14 @@ Hovering over a model, gives a pop-up that lists the following information:
 * The models docstring
 * A list of every field, with its field type and its help text (if defined). Unique fields have their name underlined.
 
-This was build with the sauce::
+This was build with the sauce:
+
+.. code-block:: python
 
   SPAGHETTI_SAUCE = {
-    'apps':['auth','notifications','reversion'],
-    'show_fields':False,
-    }
+      'apps': ['auth', 'notifications', 'reversion'],
+      'show_fields': False,
+  }
 
 A complex live-demo
 -------------------
