@@ -22,5 +22,5 @@ urlpatterns = [
         },
         meatball_template_name="tests/meatball.html"
     ), name='test_plate_override$'),
-    url(r'^$', include('django_spaghetti.urls', namespace="spaghetti")),
+    url(r'', include('django_spaghetti.urls', namespace="spaghetti")),
 ]

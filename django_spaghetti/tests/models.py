@@ -18,7 +18,7 @@ class PoliceOfficer(models.Model):
 
 
 class PoliceStation(models.Model):
-    officers = models.ForeignKey("PoliceOfficer")
+    officers = models.ForeignKey("PoliceOfficer", on_delete=models.CASCADE)
 
 
 class Precinct(PoliceStation):
@@ -28,7 +28,7 @@ class Precinct(PoliceStation):
     """
     number = models.IntegerField(primary_key=True)
     burrough = models.CharField(max_length=20)
-    captain = models.OneToOneField(PoliceOfficer)
+    captain = models.OneToOneField(PoliceOfficer, on_delete=models.CASCADE)
 
     class Meta:
         unique_together = ("burrough", "number")
@@ -47,7 +47,7 @@ class Division(PoliceStation):
 
 class Arrest(models.Model):
     alleged_crime = models.CharField(max_length=20)
-    perp = models.ForeignKey("Perpetrator")
+    perp = models.ForeignKey("Perpetrator", on_delete=models.CASCADE)
     arrest_date = models.DateField()
     processing_date = models.DateField()
 
