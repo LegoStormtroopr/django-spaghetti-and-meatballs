@@ -55,3 +55,6 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# Don't include the SQLite database in the repo
+django_spaghetti/db.sqlite3
