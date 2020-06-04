@@ -28,12 +28,9 @@ setup(
         'Programming Language :: Python',
         # Replace these appropriately if you are stuck on Python 2.
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.2',
-        'Programming Language :: Python :: 3.3',
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
     ],
     keywords='django entity relationship diagram erd uml',
     install_requires=['django'], # I mean obviously you'll have django installed if you want to use this.
-
 )

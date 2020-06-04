@@ -145,7 +145,6 @@ class Plate(View):
                         )
                 }
             )
-
         data = {
             'meatballs': json.dumps(nodes),
             'spaghetti': json.dumps(edges)
