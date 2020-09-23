@@ -1,5 +1,0 @@
-include LICENSE
-include README.rst
-recursive-include django_spaghetti/static *
-recursive-include django_spaghetti/templates *
-recursive-include docs *

@@ -17,14 +17,16 @@ Installing spaghetti
 
 3. Add a plate of spaghetti in your ``urls.py`` like so::
 
+    from django.urls import path
+  
     urlpatterns += patterns('',
-      url(r'^plate/', include('django_spaghetti.urls')),
+      path(r'^plate/', include('django_spaghetti.urls')),
     )
 
 4. Or use the class-based view if you want more flexibility::
 
     urlpatterns += patterns('',
-      url(r'^plate/$',
+      path(r'^plate/$',
         Plate.as_view(
           override_settings = {
               'apps':['auth','polls'],

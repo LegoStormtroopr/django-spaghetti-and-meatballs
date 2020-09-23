@@ -1,6 +1,5 @@
 from copy import deepcopy
 
-from django.contrib.contenttypes.models import ContentType
 from django.shortcuts import render
 
 from django.conf import settings
@@ -59,27 +58,32 @@ class Plate(View):
             for app, models in graph_settings.get('exclude', {}).items()
             for model in models
         ]
-        models = ContentType.objects.filter(app_label__in=apps)
+        from django.apps import apps
+
+        models = apps.get_models()
         nodes = []
         edges = []
         for model in models:
-            if (model.model_class() is None):
+            if (model is None):
                 continue
-            model.is_proxy = model.model_class()._meta.proxy
+            model.is_proxy = model._meta.proxy
             if (model.is_proxy and not graph_settings.get('show_proxy', False)):
                 continue
 
-            model.doc = model.model_class().__doc__
-            _id = "%s__%s" % (model.app_label, model.model)
+            model.doc = model.__doc__
+            print(dir(model._meta))
+            app_label = model._meta.app_label
+            model_name = model._meta.model_name
+            _id = "%s__%s" % (app_label, model_name)
             if _id in excludes:
                 continue
 
             label = self.get_node_label(model)
 
-            fields = [f for f in model.model_class()._meta.fields]
-            many = [f for f in model.model_class()._meta.many_to_many]
+            fields = [f for f in model._meta.fields]
+            many = [f for f in model._meta.many_to_many]
             if graph_settings.get('show_fields', True):
-                label += "\n%s\n" % ("-" * len(model.model))
+                label += "\n%s\n" % ("-" * len(model.model_name))
                 label += "\n".join([str(f.name) for f in fields])
             edge_color = {'inherit': 'from'}
 
@@ -92,7 +96,7 @@ class Plate(View):
                     elif _id == to_id and graph_settings.get('ignore_self_referential', False):
                         pass
                     else:
-                        if m.app_label != model.app_label:
+                        if m.app_label != app_label:
                             edge_color = {'inherit': 'both'}
 
                         edge = {'from': _id, 'to': to_id, 'color': edge_color}
@@ -122,7 +126,7 @@ class Plate(View):
 
                         edges.append(edge)
             if model.is_proxy:
-                proxy = model.model_class()._meta.proxy_for_model._meta
+                proxy = model._meta.proxy_for_model._meta
                 model.proxy = proxy
                 edge = {
                     'to': _id,
@@ -139,7 +143,7 @@ class Plate(View):
                     'id': _id,
                     'label': label,
                     'shape': 'box',
-                    'group': model.app_label,
+                    'group': app_label,
                     'title': get_template(self.meatball_template_name).render(
                         {'model': model, 'fields': all_node_fields}
                         )
@@ -157,9 +161,9 @@ class Plate(View):
         Default - uses verbose name, lines breaks where sensible
         """
         if model.is_proxy:
-            label = "(P) %s" % (model.name.title())
+            label = "(P) %s" % (model._meta.verbose_name.title())
         else:
-            label = "%s" % (model.name.title())
+            label = "%s" % (model._meta.verbose_name.title())
 
         line = ""
         new_label = []
