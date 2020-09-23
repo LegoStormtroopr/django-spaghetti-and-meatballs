@@ -4,6 +4,9 @@ version = "0.3.0"
 description = "Its a spicy meatball for serving up fresh hot entity-relationship diagrams straight from your django models."
 authors = ["Samuel Spencer <sam@sqbl.org>"]
 license = "MIT License"
+packages = [
+    { include = "django_spaghetti" },
+]
 
 [tool.poetry.dependencies]
 python = "^3.6"
