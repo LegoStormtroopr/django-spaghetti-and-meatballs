@@ -1,7 +1,5 @@
 language: python
 python:
-  - "3.4"
-  - "3.5"
   - "3.6"
   - "3.7"
   - "3.8"
@@ -22,9 +20,5 @@ before_script:
 # command to run tests
 script:
   - coverage run --branch --source=django_spaghetti manage.py test
-matrix:
-  exclude:
-    - python: "3.4"
-      env: DJANGO=2.1
 after_success:
   - coveralls
