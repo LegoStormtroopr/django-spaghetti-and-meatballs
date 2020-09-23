@@ -1,12 +1,13 @@
 [tool.poetry]
 name = "django-spaghetti-and-meatballs"
-version = "0.3.0"
+version = "0.3.1"
 description = "Its a spicy meatball for serving up fresh hot entity-relationship diagrams straight from your django models."
 authors = ["Samuel Spencer <sam@sqbl.org>"]
 license = "MIT License"
 packages = [
     { include = "django_spaghetti" },
 ]
+readme = "README.rst"
 
 [tool.poetry.dependencies]
 python = "^3.6"
