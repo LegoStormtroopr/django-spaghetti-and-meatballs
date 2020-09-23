@@ -17,6 +17,3 @@ django = ">=2.2"
 [build-system]
 requires = ["poetry>=0.12"]
 build-backend = "poetry.masonry.api"
-
-[tool.poetry.scripts]
-testserver = "django-admin runserver 0.0.0.0:8000"
