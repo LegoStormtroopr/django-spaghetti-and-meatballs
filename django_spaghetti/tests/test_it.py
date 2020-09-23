@@ -4,7 +4,7 @@ from django.urls import reverse
 
 class LoadThePlate(TestCase):
     def test_plate(self):
-        response = self.client.get("/")
+        response = self.client.get("/plate")
         resp_str = str(response.content)
         self.assertEqual(response.status_code, 200)
         self.assertTrue('Officer' in resp_str)
@@ -30,7 +30,7 @@ class LoadThePlate(TestCase):
 
     def test_no_override_after_override(self):
         response1 = self.client.get("/test/plate_override")
-        response2 = self.client.get("/")
+        response2 = self.client.get("/plate")
         resp_str = str(response2.content)
         self.assertEqual(response1.status_code, 200)
         self.assertEqual(response2.status_code, 200)

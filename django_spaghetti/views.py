@@ -1,5 +1,6 @@
 from copy import deepcopy
 
+from django.apps import apps
 from django.shortcuts import render
 
 from django.conf import settings
@@ -51,29 +52,33 @@ class Plate(View):
         else:
             graph_settings = self.settings
 
-        apps = graph_settings.get('apps', [])
+        apps_list = graph_settings.get('apps', [])
 
         excludes = [
             "%s__%s" % (app, model)
             for app, models in graph_settings.get('exclude', {}).items()
             for model in models
         ]
-        from django.apps import apps
 
         models = apps.get_models()
         nodes = []
         edges = []
         for model in models:
+            app_label = model._meta.app_label
+            model_name = model._meta.model_name
+
             if (model is None):
                 continue
+
+            if app_label not in apps_list:
+                continue
+
             model.is_proxy = model._meta.proxy
             if (model.is_proxy and not graph_settings.get('show_proxy', False)):
                 continue
 
             model.doc = model.__doc__
 
-            app_label = model._meta.app_label
-            model_name = model._meta.model_name
             _id = "%s__%s" % (app_label, model_name)
             if _id in excludes:
                 continue
@@ -83,7 +88,7 @@ class Plate(View):
             fields = [f for f in model._meta.fields]
             many = [f for f in model._meta.many_to_many]
             if graph_settings.get('show_fields', True):
-                label += "\n%s\n" % ("-" * len(model.model_name))
+                label += "\n%s\n" % ("-" * len(model_name))
                 label += "\n".join([str(f.name) for f in fields])
             edge_color = {'inherit': 'from'}
 
