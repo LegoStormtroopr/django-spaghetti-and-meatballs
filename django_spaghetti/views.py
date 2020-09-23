@@ -71,7 +71,7 @@ class Plate(View):
                 continue
 
             model.doc = model.__doc__
-            print(dir(model._meta))
+
             app_label = model._meta.app_label
             model_name = model._meta.model_name
             _id = "%s__%s" % (app_label, model_name)
