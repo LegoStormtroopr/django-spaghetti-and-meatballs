@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "django-spaghetti-and-meatballs"
-version = "0.3.1"
+version = "0.4.0"
 description = "Its a spicy meatball for serving up fresh hot entity-relationship diagrams straight from your django models."
 authors = ["Samuel Spencer <sam@sqbl.org>"]
 license = "MIT License"
