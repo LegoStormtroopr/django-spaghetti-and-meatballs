@@ -15,7 +15,6 @@ class LoadThePlate(TestCase):
 
     def test_plate_show_m2m_field_detail(self):
         response = self.client.get("/test/plate_show_m2m_field_detail")
-        resp_str = str(response.content)
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'Officer')
         self.assertContains(response, 'All arrests made by the officer')
