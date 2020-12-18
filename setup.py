@@ -1,6 +1,5 @@
 import os
 from setuptools import setup
-from django_spaghetti import __version__
 
 with open(os.path.join(os.path.dirname(__file__), 'README.rst')) as readme:
     README = readme.read()
@@ -10,7 +9,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='django-spaghetti-and-meatballs',
-    version=__version__,
+    version="0.4.0",
     packages=['django_spaghetti'],
     include_package_data=True,
     license='MIT License',
@@ -32,5 +31,7 @@ setup(
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
     ],
     keywords='django entity relationship diagram erd uml',
-    install_requires=['django'], # I mean obviously you'll have django installed if you want to use this.
+    install_requires=[
+        'django'  # I mean obviously you'll have django installed if you want to use this.
+    ],
 )

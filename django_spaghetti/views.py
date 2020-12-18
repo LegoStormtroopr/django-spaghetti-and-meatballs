@@ -87,7 +87,7 @@ class Plate(TemplateView):
             _models.append(model)
 
         return _models
-    
+
     def get_group(self, model):
         return model._meta.app_label
 
@@ -101,12 +101,12 @@ class Plate(TemplateView):
             app_info = apps.get_app_config(app)
             groups.update({
                 app: {
-                    "color" : {
+                    "color": {
                         'background': colour,
                         'border': 'gray'
                     },
-                    "data" : {
-                        
+                    "data": {
+                        'name': app_info.app_label
                     }
                 }
             })
@@ -150,9 +150,8 @@ class Plate(TemplateView):
         return [
             f
             for f in self.get_fields_for_model(model)
-            if f.remote_field is not None
-                and self.include_link_to_field(model, f)
-        ] 
+            if f.remote_field is not None and self.include_link_to_field(model, f)
+        ]
 
     def get_id_for_model(self, model):
         app_label = model._meta.app_label
@@ -170,7 +169,6 @@ class Plate(TemplateView):
 
         nodes = []
         edges = []
-        groups = {}
         for model in self.get_models():
             app_label = model._meta.app_label
             model_name = model._meta.model_name
@@ -221,7 +219,7 @@ class Plate(TemplateView):
                     'title': get_template(self.meatball_template_name).render(
                         {'model': model, 'model_meta': model._meta, 'fields': node_fields}
                     ),
-                    'data' : self.get_extra_node_data(model)
+                    'data': self.get_extra_node_data(model)
                 }
             )
         context = self.get_context_data()
@@ -257,5 +255,6 @@ class Plate(TemplateView):
         new_label.append(line)
 
         return "\n".join(new_label)
+
 
 plate = Plate.as_view()

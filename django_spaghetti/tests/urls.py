@@ -1,5 +1,5 @@
 from django.conf.urls import url, include
-from django_spaghetti.views import plate, Plate
+from django_spaghetti.views import Plate
 
 urlpatterns = [
     url(r'^$', Plate.as_view(
