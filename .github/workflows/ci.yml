@@ -1,9 +1,5 @@
 name: Testing
-on:
-  push:
-    branches:
-      - master
-      - develop
+on: [push, pull_request]
 
 jobs:
   python_lint:
