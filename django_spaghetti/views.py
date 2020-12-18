@@ -106,7 +106,7 @@ class Plate(TemplateView):
                         'border': 'gray'
                     },
                     "data": {
-                        'name': app_info.app_label
+                        'name': str(app_info.verbose_name)
                     }
                 }
             })
