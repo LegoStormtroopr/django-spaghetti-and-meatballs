@@ -1,0 +1,47 @@
+name: Testing
+on:
+  push:
+    branches:
+      - master
+      - develop
+
+jobs:
+  python_lint:
+    name: Linting
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR
+        uses: actions/checkout@v1
+      - name: Setup Python 3.8
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.8
+      - name: Install flake8
+        run: pip install flake8
+      - name: Lint
+        run: flake8
+
+  test:
+    needs:
+      - python_lint
+    name: Testing
+    strategy:
+      matrix:
+        django:
+          - '2.2'
+          - '3.0'
+          - '3.1'
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-python@v1
+        with:
+          python-version: 3.8
+
+      - name: Install tox
+        run: pip install --upgrade setuptools pip poetry
+
+      - name: Run tests
+        run: poetry config virtualenvs.create false && poetry install && django-admin test
