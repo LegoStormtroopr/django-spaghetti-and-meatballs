@@ -95,6 +95,20 @@ A complex live-demo
 To see a complex example, where ``django-spaghetti-and-meatballs`` really shines,
 checkout the live version built for the `Aristotle Metadata Registry <http://registry.aristotlemetadata.com/labs/plate/>`_
 
+Testing and developing
+----------------------
+
+I like keeping my development environments isolated in docker. You can too. If you want to install `poetry` locally, you can skip this bit.
+
+* Build a container with Pythong and Poetry installed - `docker build . -t spaghetti`
+* Run a container for developing `docker run -v "$(realpath .)":/site -w /site -p 8000:8000 -it --rm spaghetti bash`
+
+* Install the dependencies - `poetry install`
+* Open a poetry shell - `poetry shell`
+* Run the server - `django-admin runserver 0.0.0.0:8000`
+
+If you navigate to `127.0.0.1:8000` should should see the demo app.
+
 .. |docs| image:: https://readthedocs.org/projects/django-spaghetti-and-meatballs/badge/?version=latest
     :target: https://django-spaghetti-and-meatballs.readthedocs.io/en/latest/
     :alt: Documentation Status
@@ -108,3 +122,4 @@ checkout the live version built for the `Aristotle Metadata Registry <http://reg
 
 .. |travis| image:: https://travis-ci.org/LegoStormtroopr/django-spaghetti-and-meatballs.svg?branch=master
     :target: https://travis-ci.org/LegoStormtroopr/django-spaghetti-and-meatballs
+

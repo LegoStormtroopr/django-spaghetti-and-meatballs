@@ -1,11 +1,11 @@
 {% load i18n %}
 <div style="max-width:350px;white-space: normal;">
 <div style="border-bottom:1px solid black">
-    {% if model.is_proxy %}
-    {% trans "Proxy for:" %} {{ model.proxy }} <br>
+    {% if model_meta.is_proxy %}
+    {% trans "Proxy for:" %} {{ model_meta.proxy }} <br>
     {% endif %}
-    {% trans "Model:" %} {{ model.model }}<br>
-    {% trans "App:" %} {{ model.app_label }}
+    {% trans "Model:" %} {{ model_meta.model_name }}<br>
+    {% trans "App:" %} {{ model_meta.app_label }}
 </div>
 <div style="white-space:pre-line">
     {{ model.doc }}
