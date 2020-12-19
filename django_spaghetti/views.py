@@ -153,10 +153,22 @@ class Plate(TemplateView):
             if f.remote_field is not None and self.include_link_to_field(model, f)
         ]
 
+    def get_edge_data(self, field):
+        return {
+            'from_model': field.model._meta.verbose_name.title(),
+            'to_model': field.remote_field.model._meta.verbose_name.title(),
+            'help_text': str(field.help_text),
+            'many_to_many': field.many_to_many,
+            'one_to_one': field.one_to_one,
+        }
+
     def get_id_for_model(self, model):
         app_label = model._meta.app_label
         model_name = model._meta.model_name
         return "%s__%s" % (app_label, model_name)
+
+    def get_model_display_information(self, model):
+        return model.__doc__
 
     def plate(self):
         """
@@ -172,7 +184,7 @@ class Plate(TemplateView):
         for model in self.get_models():
             app_label = model._meta.app_label
             model_name = model._meta.model_name
-            model.doc = model.__doc__
+            model.doc = self.get_model_display_information(model)
             _id = self.get_id_for_model(model)
 
             label = self.get_node_label(model)
@@ -195,7 +207,13 @@ class Plate(TemplateView):
                     if m._meta.app_label != app_label:
                         edge_color = {'inherit': 'both'}
 
-                    edge = {'from': _id, 'to': to_id, 'color': edge_color}
+                    edge = {
+                        'from': _id,
+                        'to': to_id,
+                        'color': edge_color,
+                        'title': f.verbose_name,
+                        'data': self.get_edge_data(f)
+                    }
 
                     edge.update(self.generate_edge_style(model, f))
                     edges.append(edge)
@@ -227,6 +245,11 @@ class Plate(TemplateView):
             'meatballs': json.dumps(nodes),
             'spaghetti': json.dumps(edges),
             'groups': json.dumps(self.get_groups()),
+            "pyobj": {
+                'meatballs': nodes,
+                'spaghetti': edges,
+                'groups': self.get_groups(),
+            }
         })
         return render(request, self.plate_template_name, context)
 

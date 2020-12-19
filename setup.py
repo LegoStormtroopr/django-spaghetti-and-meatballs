@@ -9,7 +9,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='django-spaghetti-and-meatballs',
-    version="0.4.0",
+    version="0.4.2",
     packages=['django_spaghetti'],
     include_package_data=True,
     license='MIT License',
