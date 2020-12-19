@@ -30,10 +30,8 @@ class LoadThePlate(TestCase):
         response2 = self.client.get("/plate")
         self.assertEqual(response1.status_code, 200)
         self.assertEqual(response2.status_code, 200)
-        self.assertTrue('policeofficer' in str(response1.content).lower())
-        self.assertTrue('policestation' not in str(response1.content).lower())
-        self.assertContains(response1, 'Officer')
-        self.assertNotContains(response1, 'All arrests made by the officer')
+        self.assertContains(response1, 'policeofficer')
+        self.assertNotContains(response1, 'policestation')
 
     def test_meatball(self):
         response = self.client.get("/test/plate_show_m2m_field_detail")

@@ -155,11 +155,11 @@ class Plate(TemplateView):
 
     def get_edge_data(self, field):
         return {
-            'from_model': field.model._meta.verbose_name.title(),
-            'to_model': field.remote_field.model._meta.verbose_name.title(),
+            'from_model': str(field.model._meta.verbose_name.title()),
+            'to_model': str(field.remote_field.model._meta.verbose_name.title()),
             'help_text': str(field.help_text),
-            'many_to_many': field.many_to_many,
-            'one_to_one': field.one_to_one,
+            # 'many_to_many': field.many_to_many,
+            # 'one_to_one': field.one_to_one,
         }
 
     def get_id_for_model(self, model):
@@ -211,7 +211,7 @@ class Plate(TemplateView):
                         'from': _id,
                         'to': to_id,
                         'color': edge_color,
-                        'title': f.verbose_name,
+                        'title': f.verbose_name.title(),
                         'data': self.get_edge_data(f)
                     }
 
