@@ -147,10 +147,21 @@ class Plate(TemplateView):
         return fields + many
 
     def get_link_fields_for_model(self, model):
+        def is_through_field(f):
+            if through_model := getattr(f.remote_field, 'through', None):
+                if not through_model._meta.auto_created:
+                    print("==================")
+                    print(f, through_model)
+                    print(through_model._meta.auto_created)
+                return bool(through_model._meta.auto_created)
+            return False
+
         return [
             f
             for f in self.get_fields_for_model(model)
-            if f.remote_field is not None and self.include_link_to_field(model, f)
+            if (f.remote_field is not None
+                and not is_through_field(f)
+                and self.include_link_to_field(model, f))
         ]
 
     def get_edge_data(self, field):

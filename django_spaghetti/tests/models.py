@@ -13,12 +13,17 @@ class PoliceOfficer(models.Model):
     arrests = models.ManyToManyField(
         "Arrest",
         related_name="arresting_officers",
-        help_text='All arrests made by the officer'
+        help_text='All arrests made by the officer',
     )
 
 
 class PoliceStation(models.Model):
-    officers = models.ForeignKey("PoliceOfficer", on_delete=models.CASCADE)
+    officers = models.ManyToManyField(
+        "PoliceOfficer",
+        related_name="stations",
+        help_text='All arrests made by the officer',
+        through="StationAssignment",
+    )
 
 
 class Precinct(PoliceStation):
@@ -43,6 +48,12 @@ class Division(PoliceStation):
     E.g. Major Crimes Unit
     """
     name = models.CharField(max_length=200)
+
+
+class StationAssignment(models.Model):
+    officer = models.ForeignKey("PoliceOfficer", on_delete=models.CASCADE)
+    arrest = models.ForeignKey("PoliceStation", on_delete=models.CASCADE)
+    start_date = models.DateField()
 
 
 class Arrest(models.Model):
